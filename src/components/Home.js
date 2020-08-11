@@ -6,7 +6,13 @@ import MovieThump from './elements/MovieThump';
 import Spinner from './elements/Spinner';
 import LoadMoreBtn from './elements/LoadMoreBtn';
 import { useHomeFetch } from './hooks/useHomeFetch';
-import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../config/config';
+import {
+  IMAGE_BASE_URL,
+  BACKDROP_SIZE,
+  POSTER_SIZE,
+  SEARCH_BASE_URL,
+  POPULAR_BASE_URL,
+} from '../config/config';
 import NoImage from './images/no_image.jpg';
 
 const Home = () => {
@@ -19,6 +25,17 @@ const Home = () => {
     fetchMovies,
   ] = useHomeFetch();
   const [searchTerm, setSearchTerm] = useState('');
+
+  const loadMoreMovies = () => {
+    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${
+      currentPage + 1
+    }`;
+    const popularEndpoint = `${POPULAR_BASE_URL}&page=${currentPage + 1}`;
+
+    const endpoint = searchTerm ? searchEndpoint : popularEndpoint;
+
+    fetchMovies(endpoint);
+  };
 
   if (error) return <div>Somthing went wrong...</div>;
   if (!movies[0]) return <Spinner />;
@@ -46,8 +63,10 @@ const Home = () => {
         ))}
       </Grid>
       <MovieThump />
-      <Spinner />
-      <LoadMoreBtn />
+      {loading && <Spinner />}
+      {currentPage < totalPages && !loading && (
+        <LoadMoreBtn text='Load More' callback={loadMoreMovies} />
+      )}
     </>
   );
 };
