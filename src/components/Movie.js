@@ -10,8 +10,6 @@ import { useMovieFetch } from './hooks/useMovieFetch';
 const Movie = ({ match }) => {
   const [movie, loading, error] = useMovieFetch(match.params.id);
 
-  console.log(movie);
-
   if (error) return <div>Something went wrong ...</div>;
   if (loading) return <Spinner />;
 
@@ -19,11 +17,15 @@ const Movie = ({ match }) => {
     <>
       <Navigation movie={movie.original_title} />
       <MovieInfo movie={movie} />
-      <MovieInfoBar />
+      <MovieInfoBar
+        time={movie.runtime}
+        budget={movie.budget}
+        revenue={movie.revenue}
+      />
       {movie.actors && (
         <Grid header='Actors'>
           {movie.actors.map((actor, i) => (
-            <Actor key={i} actor={actor} />
+            <Actor key={actor.credit_id} actor={actor} />
           ))}
         </Grid>
       )}
