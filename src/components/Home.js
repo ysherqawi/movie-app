@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HeroImage from './elements/HeroImage';
 import SearchBar from './elements/SearchBar';
 import Grid from './elements/Grid';
-import MovieThump from './elements/MovieThump';
+import MovieThumb from './elements/MovieThumb';
 import Spinner from './elements/Spinner';
 import LoadMoreBtn from './elements/LoadMoreBtn';
 import { useHomeFetch } from './hooks/useHomeFetch';
@@ -60,7 +60,7 @@ const Home = () => {
       <SearchBar callback={searchMovies} />
       <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}>
         {movies.map((movie) => (
-          <MovieThump
+          <MovieThumb
             key={movie.id}
             clickable
             image={
@@ -72,7 +72,6 @@ const Home = () => {
           />
         ))}
       </Grid>
-      <MovieThump />
       {loading && <Spinner />}
       {currentPage < totalPages && !loading && (
         <LoadMoreBtn text='Load More' callback={loadMoreMovies} />
