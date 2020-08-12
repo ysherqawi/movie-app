@@ -1,7 +1,21 @@
 import React from 'react';
+import Navigation from './elements/Navigation';
+import MovieInfo from './elements/MovieInfo';
+import MovieInfoBar from './elements/MovieInfoBar';
+import Actor from './elements/Actor';
+import Grid from './elements/Grid';
+import Spinner from './elements/Spinner';
 
-const Movie = ({ match }) => {
-  return <div>Movie {match.params.id}</div>;
-};
+const Movie = ({ match }) => (
+  <>
+    <Navigation />
+    <MovieInfo />
+    <MovieInfoBar />
+    <Grid>
+      <Actor />
+    </Grid>
+    <Spinner />
+  </>
+);
 
 export default Movie;
