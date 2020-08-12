@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config/config';
 
 export const StyledMovieInfo = styled.div`
-  background: ${props =>
+  background: ${(props) =>
     props.backdrop
       ? `url('${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.backdrop}')`
       : '#000'};

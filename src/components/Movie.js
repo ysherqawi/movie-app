@@ -17,8 +17,8 @@ const Movie = ({ match }) => {
 
   return (
     <>
-      <Navigation />
-      <MovieInfo />
+      <Navigation movie={movie.original_title} />
+      <MovieInfo movie={movie} />
       <MovieInfoBar />
       {movie.actors && (
         <Grid header='Actors'>
