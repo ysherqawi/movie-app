@@ -28,8 +28,17 @@ export const useMovieFetch = (movieId) => {
   }, [movieId]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    if (localStorage[movieId]) {
+      setstate(JSON.parse(localStorage[movieId]));
+      setLoading(false);
+    } else {
+      fetchData();
+    }
+  }, [fetchData, movieId]);
+
+  useEffect(() => {
+    localStorage.setItem(movieId, JSON.stringify(state));
+  }, [movieId, state]);
 
   return [state, loading, error];
 };
