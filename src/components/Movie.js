@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Navigation from './elements/Navigation';
 import MovieInfo from './elements/MovieInfo';
 import MovieInfoBar from './elements/MovieInfoBar';
@@ -31,6 +32,10 @@ const Movie = ({ match }) => {
       )}
     </>
   );
+};
+
+Movie.propTypes = {
+  match: PropTypes.object.isRequired,
 };
 
 export default Movie;

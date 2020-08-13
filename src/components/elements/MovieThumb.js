@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyledMovieThumb } from '../styles/StyledMovieThumb';
 import { Link } from 'react-router-dom';
 
@@ -13,5 +14,11 @@ const MovieThumb = ({ movieId, image, clickable }) => (
     )}
   </StyledMovieThumb>
 );
+
+MovieThumb.propTypes = {
+  image: PropTypes.string.isRequired,
+  movieId: PropTypes.number,
+  clickable: PropTypes.bool.isRequired,
+};
 
 export default MovieThumb;

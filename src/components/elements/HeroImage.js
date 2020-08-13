@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyledHeroImage } from './../styles/StyledHeroImage';
 
 const HeroImage = ({ image, title, text }) => (
@@ -11,5 +12,11 @@ const HeroImage = ({ image, title, text }) => (
     </div>
   </StyledHeroImage>
 );
+
+HeroImage.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
 
 export default HeroImage;
